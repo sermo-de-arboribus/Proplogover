@@ -31,6 +31,17 @@
             Sign = sign;
         }
 
+        /// <summary>
+        /// Convenience constructor, assigns an initial value to the literal
+        /// </summary>
+        /// <param name="name">The (immutable) name associated with this literal.</param>
+        /// <param name="sign">The (immutable) sign associated with this literal.</param>
+        /// <param name="value">The initial value of this literal</param>
+        public Literal(string name, bool sign, bool value) : this (name, sign)
+        {
+            Value = value;
+        }
+
         #endregion
 
         #region Public instance methods
@@ -58,6 +69,11 @@
         public override int GetHashCode()
         {
             return 13 * Name.GetHashCode() + 17 * Sign.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return (Sign ? "¬" : "") + Name;
         }
 
         #endregion

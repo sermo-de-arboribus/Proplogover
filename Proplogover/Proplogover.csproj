@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clause.cs" />
+    <Compile Include="Formula.cs" />
     <Compile Include="Literal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
