@@ -13,9 +13,9 @@ namespace ProplogoverTest
         public void Should_display_clauses_with_or_signs()
         {
             // Arrange
-            Literal a = new Literal("A", false);
-            Literal b = new Literal("B", false);
-            Clause clause = new Clause(new List<Literal>() { a, b });
+            SignedLiteral a = new SignedLiteral("A", false);
+            SignedLiteral b = new SignedLiteral("B", false);
+            Clause clause = new Clause(new List<SignedLiteral>() { a, b });
 
             // Act
             string clauseAsString = clause.ToString();
@@ -28,8 +28,8 @@ namespace ProplogoverTest
         public void Should_display_clauses_with_single_literal_correctly()
         {
             // Arrange
-            Literal a = new Literal("A", false);
-            Clause clause = new Clause(new List<Literal>() { a });
+            SignedLiteral a = new SignedLiteral("A", false);
+            Clause clause = new Clause(new List<SignedLiteral>() { a });
 
             // Act
             string clauseAsString = clause.ToString();
@@ -42,9 +42,9 @@ namespace ProplogoverTest
         public void Should_swallow_duplicate_literals()
         {
             // Arrange
-            Literal a = new Literal("A", false);
-            Literal b = new Literal("B", true);
-            Clause clause = new Clause(new List<Literal>() { a, a, b, b });
+            SignedLiteral a = new SignedLiteral("A", false);
+            SignedLiteral b = new SignedLiteral("B", true);
+            Clause clause = new Clause(new List<SignedLiteral>() { a, a, b, b });
 
             // Act
             string clauseAsString = clause.ToString();
@@ -61,13 +61,13 @@ namespace ProplogoverTest
         public void Should_evaluate_clause_with_all_true_literals_to_true()
         {
             // Arrange
-            Literal a = new Literal("A", false);
-            Literal b = new Literal("B", false);
-            Literal c = new Literal("C", false);
+            SignedLiteral a = new SignedLiteral("A", false);
+            SignedLiteral b = new SignedLiteral("B", false);
+            SignedLiteral c = new SignedLiteral("C", false);
             a.Value = true;
             b.Value = true;
             c.Value = true;
-            Clause clause = new Clause(new List<Literal>() { a, b, c });
+            Clause clause = new Clause(new List<SignedLiteral>() { a, b, c });
 
             // Act
             bool clauseEvaluation = clause.Evaluate();
@@ -80,10 +80,10 @@ namespace ProplogoverTest
         public void Should_evaluate_clause_with_mixed_valued_literals_to_true()
         {
             // Arrange
-            Literal a = new Literal("A", false, false);
-            Literal b = new Literal("B", false, true);
-            Literal c = new Literal("C", false, false);
-            Clause clause = new Clause(new List<Literal>() { a, b, c });
+            SignedLiteral a = new SignedLiteral("A", false, false);
+            SignedLiteral b = new SignedLiteral("B", false, true);
+            SignedLiteral c = new SignedLiteral("C", false, false);
+            Clause clause = new Clause(new List<SignedLiteral>() { a, b, c });
 
             // Act
             bool clauseEvaluation = clause.Evaluate();
@@ -96,10 +96,10 @@ namespace ProplogoverTest
         public void Should_evaluate_clause_with_all_false_literals_to_false()
         {
             // Arrange
-            Literal a = new Literal("A", false, false);
-            Literal b = new Literal("B", false, false);
-            Literal c = new Literal("C", false, false);
-            Clause clause = new Clause(new List<Literal>() { a, b, c });
+            SignedLiteral a = new SignedLiteral("A", false, false);
+            SignedLiteral b = new SignedLiteral("B", false, false);
+            SignedLiteral c = new SignedLiteral("C", false, false);
+            Clause clause = new Clause(new List<SignedLiteral>() { a, b, c });
 
             // Act
             bool clauseEvaluation = clause.Evaluate();
@@ -112,14 +112,14 @@ namespace ProplogoverTest
         public void Should_evaluate_clauses_with_negated_values_correctly()
         {
             // Arrange
-            Literal a = new Literal("A", true, false); // evaluates to true
-            Literal b = new Literal("B", false, false); // evaluates to false
-            Literal c = new Literal("C", false, true); // evaluates to true
-            Literal d = new Literal("D", true, true); // evaluates to false
-            Clause clause1 = new Clause(new List<Literal>() { a, b, c });
-            Clause clause2 = new Clause(new List<Literal>() { a, c });
-            Clause clause3 = new Clause(new List<Literal>() { a, b });
-            Clause clause4 = new Clause(new List<Literal>() { b, d });
+            SignedLiteral a = new SignedLiteral("A", true, false); // evaluates to true
+            SignedLiteral b = new SignedLiteral("B", false, false); // evaluates to false
+            SignedLiteral c = new SignedLiteral("C", false, true); // evaluates to true
+            SignedLiteral d = new SignedLiteral("D", true, true); // evaluates to false
+            Clause clause1 = new Clause(new List<SignedLiteral>() { a, b, c });
+            Clause clause2 = new Clause(new List<SignedLiteral>() { a, c });
+            Clause clause3 = new Clause(new List<SignedLiteral>() { a, b });
+            Clause clause4 = new Clause(new List<SignedLiteral>() { b, d });
 
             // Act
             bool clauseEvaluation1 = clause1.Evaluate();
@@ -138,7 +138,7 @@ namespace ProplogoverTest
         public void Should_evaluate_empty_clause_to_true()
         {
             // Arrange
-            Clause clause = new Clause(new List<Literal>() {});
+            Clause clause = new Clause(new List<SignedLiteral>() {});
 
             // Act
             bool clauseEvaluation = clause.Evaluate();

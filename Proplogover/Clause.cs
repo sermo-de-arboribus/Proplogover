@@ -11,15 +11,15 @@ namespace Proplogover
     {
         #region Private fields
 
-        private HashSet<Literal> _clause;
+        private HashSet<SignedLiteral> _clause;
 
         #endregion
 
         #region Constructor
 
-        public Clause(IEnumerable<Literal> clauseLiterals)
+        public Clause(IEnumerable<SignedLiteral> clauseLiterals)
         {
-            _clause = new HashSet<Literal>(clauseLiterals);
+            _clause = new HashSet<SignedLiteral>(clauseLiterals);
         }
 
         #endregion
@@ -32,7 +32,7 @@ namespace Proplogover
         /// <returns>True if the disjunction of literals in this clause under the current assignment evaluates to true</returns>
         public bool Evaluate()
         {
-            IEnumerator<Literal> it = _clause.GetEnumerator();
+            IEnumerator<SignedLiteral> it = _clause.GetEnumerator();
 
             bool result;
             if(it.MoveNext())
@@ -51,6 +51,16 @@ namespace Proplogover
             }
 
             return result;
+        }
+
+        public IEnumerable<Literal> GetAllSignedLiterals()
+        {
+            return _clause;
+        }
+
+        public IEnumerable<IGrouping<string, Literal>> GetAllLiterals()
+        {
+            return _clause.GroupBy(l => l.Name);
         }
 
         /// <summary>

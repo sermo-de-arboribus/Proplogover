@@ -54,7 +54,7 @@
   <ItemGroup>
     <Compile Include="ClauseTest.cs" />
     <Compile Include="FormulaTest.cs" />
-    <Compile Include="LiteralTest.cs" />
+    <Compile Include="SignedLiteralTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
